@@ -63,7 +63,7 @@ class NERPreprocessor(Preprocessor):
                 "pretrained word embeddings will be loaded from:\n\t%s"
                 % (wv_path_or_url)
             )
-        word_embedding_dim = 300  # all fasttext word vectors are of dim=300
+        word_embedding_dim = 768  # bert multilingual
         embs = tpp.load_wv(wv_path_or_url, verbose=verbose)
         wv_model = self.filter_embeddings(
             embs, self.p._word_vocab.vocab, word_embedding_dim
