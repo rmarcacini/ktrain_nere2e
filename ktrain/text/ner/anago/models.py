@@ -159,6 +159,7 @@ class BiLSTMCRF(object):
         z = keras.layers.Bidirectional(
             keras.layers.GRU(units=self._word_lstm_size, return_sequences=True)
         )(word_embeddings)
+        z = MultiHeadAttention(num_heads=2, key_dim=2)(z,z)
         z = keras.layers.Dense(self._fc_dim, activation="tanh")(z)
 
         if self._use_crf:
