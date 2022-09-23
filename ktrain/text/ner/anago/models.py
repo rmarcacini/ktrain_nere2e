@@ -120,7 +120,6 @@ class BiLSTMCRF(object):
         embedding_list.append(word_embeddings)
 
         # build character based word embedding
-        self._use_char = True
         if self._use_char:
             char_ids = keras.layers.Input(
                 batch_shape=(None, None, None), dtype="int32", name="char_input"
