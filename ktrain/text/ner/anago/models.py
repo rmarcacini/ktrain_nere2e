@@ -100,6 +100,7 @@ class BiLSTMCRF(object):
         inputs = [word_ids]
         embedding_list = []
         if self._embeddings is None:
+            print('##### ENTREI 1 ######')
             word_embeddings = keras.layers.Embedding(
                 input_dim=self._word_vocab_size,
                 output_dim=self._word_embedding_dim,
@@ -107,6 +108,8 @@ class BiLSTMCRF(object):
                 name="word_embedding",
             )(word_ids)
         else:
+            print('##### ENTREI 2 ######')
+            print(self._embeddings.shape)
             word_embeddings = keras.layers.Embedding(
                 input_dim=self._embeddings.shape[0],
                 output_dim=self._embeddings.shape[1],
@@ -117,6 +120,7 @@ class BiLSTMCRF(object):
         embedding_list.append(word_embeddings)
 
         # build character based word embedding
+        self._use_char = True
         if self._use_char:
             char_ids = keras.layers.Input(
                 batch_shape=(None, None, None), dtype="int32", name="char_input"
