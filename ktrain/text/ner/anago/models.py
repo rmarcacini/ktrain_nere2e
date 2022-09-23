@@ -155,7 +155,6 @@ class BiLSTMCRF(object):
         )
 
         # build model
-        word_embeddings = keras.layers.MultiHeadAttention(num_heads=2, key_dim=2)(word_embeddings,word_embeddings)
         word_embeddings = keras.layers.Dropout(self._dropout)(word_embeddings)
         z = keras.layers.Bidirectional(
             keras.layers.GRU(units=self._word_lstm_size, return_sequences=True)
