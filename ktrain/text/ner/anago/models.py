@@ -157,7 +157,7 @@ class BiLSTMCRF(object):
         # build model
         word_embeddings = keras.layers.Dropout(self._dropout)(word_embeddings)
         z = keras.layers.Bidirectional(
-            keras.layers.LSTM(units=self._word_lstm_size, return_sequences=True)
+            keras.layers.GRU(units=self._word_lstm_size, return_sequences=True)
         )(word_embeddings)
         z = keras.layers.Dense(self._fc_dim, activation="tanh")(z)
 
